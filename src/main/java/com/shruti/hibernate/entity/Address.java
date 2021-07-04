@@ -1,28 +1,28 @@
-package com.shruti.hibernate;
+package com.shruti.hibernate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="address",schema = "employee_schema")
+@Table(name = "address", schema = "employee_schema")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private int id;
-	@Column(name="city")
+	@Column(name = "city")
 	private String city;
-	@Column(name="state")
+	@Column(name = "state")
 	private String state;
-	@Column(name="pincode")
+	@Column(name = "pincode")
 	private String pincode;
 
-	
 	public Address() {
 		super();
 	}
@@ -64,6 +64,10 @@ public class Address {
 
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 }

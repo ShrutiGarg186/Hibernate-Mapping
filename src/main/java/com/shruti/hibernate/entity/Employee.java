@@ -1,4 +1,4 @@
-package com.shruti.hibernate;
+package com.shruti.hibernate.entity;
 
 import java.util.List;
 
@@ -26,17 +26,24 @@ public class Employee {
 	private String name;
 	@Column(name = "email")
 	private String email;
+
+	// unidirectional
 	@OneToOne(targetEntity = Address.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_fk_id")
 	private Address address;
-	
-	//unidirectional
+
+	// Bidirectional One to One mapping
+	@OneToOne(targetEntity = EmployeeAccount.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "account_fk_id")
+	private EmployeeAccount account;
+
+	// unidirectional
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="employee_fk_id")
+	@JoinColumn(name = "employee_fk_id")
 	private List<EmployeeSkills> skills;
 
 	// bidirectional
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<EmployeeAssets> assets;
 
 	public List<EmployeeSkills> getSkills() {
@@ -103,5 +110,11 @@ public class Employee {
 	 * 
 	 * public void setAssets(List<EmployeeAssets> assets) { this.assets = assets; }
 	 */
+	public EmployeeAccount getAccount() {
+		return account;
+	}
 
+	public void setAccount(EmployeeAccount account) {
+		this.account = account;
+	}
 }

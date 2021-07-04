@@ -1,4 +1,4 @@
-package com.shruti.hibernate;
+package com.shruti.hibernate.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

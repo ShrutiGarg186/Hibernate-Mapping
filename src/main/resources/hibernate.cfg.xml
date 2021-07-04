@@ -6,7 +6,7 @@
 <hibernate-configuration>    
     
     <session-factory>    
-       <!--  <property name="hbm2ddl.auto">update</property>     -->
+        <!-- <property name="hbm2ddl.auto">update</property>  -->   
         <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>    
         <property name="connection.url">jdbc:postgresql://localhost:5433/employee_db</property>    
         <property name="connection.username">postgres</property>    
@@ -14,10 +14,11 @@
         <property name="connection.driver_class">org.postgresql.Driver</property> 
       <property name="show_sql">true</property>    
         
-   <mapping class="com.shruti.hibernate.Employee"/>
-   <mapping class="com.shruti.hibernate.Address"/>
-   <mapping class="com.shruti.hibernate.EmployeeAssets"/>
-    <mapping class="com.shruti.hibernate.EmployeeSkills"/>
+   <mapping class="com.shruti.hibernate.entity.Employee"/>
+   <mapping class="com.shruti.hibernate.entity.Address"/>
+   <mapping class="com.shruti.hibernate.entity.EmployeeAssets"/>
+    <mapping class="com.shruti.hibernate.entity.EmployeeSkills"/>
+     <mapping class="com.shruti.hibernate.entity.EmployeeAccount"/>
 
     </session-factory>    
     

@@ -6,6 +6,12 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.shruti.hibernate.entity.Address;
+import com.shruti.hibernate.entity.Employee;
+import com.shruti.hibernate.entity.EmployeeAccount;
+import com.shruti.hibernate.entity.EmployeeAssets;
+import com.shruti.hibernate.entity.EmployeeSkills;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -20,7 +26,10 @@ public class Main {
 		skills.add(skill2);
 		skills.add(skill3);
 		
+		EmployeeAccount account = new EmployeeAccount(34566787l, "Axis Bank");
+		
 		Employee emp = new Employee("Arpit", "arpit@gmail.com",address);
+		emp.setAccount(account);
 		
 		emp.setSkills(skills);
 		  EmployeeAssets asset1 = new
@@ -36,7 +45,10 @@ public class Main {
 			
 			session.persist(asset1);
 			session.persist(asset2);
+			System.out.println(session.get(EmployeeAccount.class, 1).getEmployee().getName());
+			System.out.println(session.get(Employee.class, 47).getAccount().getBankName());
 			tx.commit();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (tx != null) {
