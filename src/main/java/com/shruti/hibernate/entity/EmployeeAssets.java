@@ -30,7 +30,6 @@ public class EmployeeAssets {
 
 	public EmployeeAssets() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public EmployeeAssets(String name, double price, Employee employeeId) {

@@ -5,11 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -37,14 +38,19 @@ public class Employee {
 	@JoinColumn(name = "account_fk_id")
 	private EmployeeAccount account;
 
-	// unidirectional
+	// unidirectional OneToMany
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_fk_id")
 	private List<EmployeeSkills> skills;
 
-	// bidirectional
-	@OneToMany(cascade = CascadeType.ALL)
+	// bidirectional OneToMany
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	private List<EmployeeAssets> assets;
+
+	// Bidirectional ManyToMany
+	@ManyToMany
+	@JoinTable(name="employee_project_column")
+	private List<EmployeeProjects> projects;
 
 	public List<EmployeeSkills> getSkills() {
 		return skills;
@@ -105,11 +111,6 @@ public class Employee {
 		this.email = email;
 	}
 
-	/*
-	 * public List<EmployeeAssets> getAssets() { return assets; }
-	 * 
-	 * public void setAssets(List<EmployeeAssets> assets) { this.assets = assets; }
-	 */
 	public EmployeeAccount getAccount() {
 		return account;
 	}
@@ -117,4 +118,13 @@ public class Employee {
 	public void setAccount(EmployeeAccount account) {
 		this.account = account;
 	}
+
+	public List<EmployeeProjects> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<EmployeeProjects> projects) {
+		this.projects = projects;
+	}
+
 }
